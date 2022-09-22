@@ -9,11 +9,11 @@ namespace ProcessArguments
     {
         public static void Deserialize<T>(IEnumerable<string> args, Action<T> callback) where T : class
         {
+            T obj;
+
             try
             {
-                var obj = Deserialize<T>(args);
-
-                callback(obj);
+                obj = Deserialize<T>(args);
             }
             catch (AggregateException ex)
             {
@@ -25,15 +25,17 @@ namespace ProcessArguments
 
                 throw;
             }
+
+            callback(obj);
         }
 
         public static void Deserialize<T>(IEnumerable<string> args, Func<T, Task> callback) where T : class
         {
+            T obj;
+
             try
             {
-                var obj = Deserialize<T>(args);
-
-                callback(obj).GetAwaiter().GetResult();
+                obj = Deserialize<T>(args);
             }
             catch (AggregateException ex)
             {
@@ -45,6 +47,8 @@ namespace ProcessArguments
 
                 throw;
             }
+
+            callback(obj).GetAwaiter().GetResult();
         }
 
         private static void PrintExceptions(AggregateException exception)
