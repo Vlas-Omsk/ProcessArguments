@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ProcessArguments
 {
-    public class RequiredIfAttribute : ValidationAttribute
+    public class RequiredIfAttribute : RequiredAttribute
     {
         public RequiredIfAttribute(string conditionMethodName)
         {
