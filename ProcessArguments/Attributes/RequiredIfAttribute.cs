@@ -2,7 +2,8 @@
 
 namespace ProcessArguments
 {
-    public class RequiredIfAttribute : RequiredAttribute
+    [AttributeUsage(AttributeTargets.Property)]
+    public class RequiredIfAttribute : Attribute
     {
         public RequiredIfAttribute(string conditionMethodName)
         {
@@ -10,5 +11,6 @@ namespace ProcessArguments
         }
 
         public string ConditionMethodName { get; set; }
+        public string Message { get; set; }
     }
 }
