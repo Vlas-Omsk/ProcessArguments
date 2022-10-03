@@ -1,6 +1,7 @@
 ﻿using ProcessArguments.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace ProcessArguments
 {
     public static class ArgumentsDeserializer
     {
+        [DebuggerHiddenAttribute]
         public static void Deserialize<T>(IEnumerable<string> args, Action<T> callback) where T : class
         {
             T obj;
@@ -31,6 +33,7 @@ namespace ProcessArguments
             callback(obj);
         }
 
+        [DebuggerHiddenAttribute]
         public static void Deserialize<T>(IEnumerable<string> args, Func<T, Task> callback) where T : class
         {
             T obj;
